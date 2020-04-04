@@ -6,3 +6,5 @@ export const SAVE_SPECIALITIES = 'SAVE_SPECIALITIES';
 export const FETCH_USERS = 'FETCH_USERS';
 export const FETCH_DOCTORS = 'FETCH_DOCTORS';
 export const FETCH_HOSPITALS = 'FETCH_HOSPITALS';
+export const FETCH_BOOKINGS = 'FETCH_BOOKINGS';
+export const COVID = 'COVID';

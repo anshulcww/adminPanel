@@ -6,5 +6,5 @@ import userReducer from './userReducer';
 export default combineReducers({
   posts: postReducer,
   doctor : docReducer,
-  user : userReducer
+  user : userReducer,
 });

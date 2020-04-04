@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { MDBDataTable } from 'mdbreact';
+import {getCovidBooking} from '../../actions/userActions'
 import { connect } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+import { MDBDataTable } from 'mdbreact';
 
-class DownloadComponent extends Component {
-    constructor(props) {
+class CovidComponent extends Component {
+    constructor(props){
         super(props)
     }
 
-    notify = () => toast("Wow so easy !");
+    async componentDidMount(){
+        await this.props.getCovidBooking()
+    }
 
     render() {
         const data =
@@ -19,54 +20,41 @@ class DownloadComponent extends Component {
                     label: 'S.no',
                     field: 'id',
                     sort: 'disabled',
-                    width: 150
+                    width: 10
                 },
                 {
                     label: 'Name',
                     field: 'name',
                     sort: 'disabled',
-                    width: 150
-                },
-                {
-                    label: 'Email',
-                    field: 'email',
-                    sort: 'disabled',
-                    width: 270
+                    width: 50
                 },
                 {
                     label: 'Mobile Number',
                     field: 'mobileNumber',
                     sort: 'disabled',
-                    width: 200
+                    width: 50
                 },
                 {
                     label: 'Address',
                     field: 'address',
                     sort: 'disabled',
-                    width: 100
+                    width: 200
                 },
                 {
-                    label: 'Registered date',
-                    field: 'timestamp',
+                    label: 'Created At',
+                    field: 'createdAt',
                     sort: 'disabled',
-                    width: 50
+                    width: 200
                 }
             ],
-            rows: this.props.userDetails
+            rows: this.props.covidDetails
         }
         return (
-
             <div className='container-fluid'>
-                
-                <h1 className='justify text-center'>List of Downloads</h1>
-                {/* {
-                    this.props.userDetails.map((user, index) => (
-                        <li key={index}>{user.user.name}</li>
-                    ))
-                } */}
-                <div>
+                                <h1 className='justify text-center'>List of Covid Bookings</h1>
+                                <div>
                     {
-                        this.props.userDetails.length > 0 ?  <MDBDataTable
+                        this.props.covidDetails.length > 0 ?  <MDBDataTable
                         striped
                         bordered
                         small
@@ -76,16 +64,12 @@ class DownloadComponent extends Component {
                     }
                
                 </div>
-               
             </div>
         );
     }
 }
 const mapStateToProps = state => ({
-    userDetails: state.user.user,
+    covidDetails: state.user.covid,
 })
 
-
-export default connect(mapStateToProps, {})(DownloadComponent);
-
-
+export default connect(mapStateToProps, {getCovidBooking})(CovidComponent);

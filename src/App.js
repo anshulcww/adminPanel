@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
 import './App.css';
 import history from './history';
-// import connect from 'connect'
 import { connect } from 'react-redux';
 import { Router, Route, Switch } from 'react-router-dom';
 import DashboardComponent from './components/DashboardComponent/DashboardComponent'
-import LoginComponent from './components/LoginComponent/LoginComponent'
-import EditDoctorComponent from './components/DashboardComponent/EditDoctorComponent'
-import DocFormComponent from './components/DashboardComponent/DocFormComponent'
-import MasterCatalogueComponent from './components/DashboardComponent/MasterCatalogueComponent'
 import DownloadComponent from './components/DashboardComponent/DownloadComponent'
 import DoctorComponent from './components/DashboardComponent/DoctorComponent'
 import HospitalComponent from './components/DashboardComponent/HospitalComponent'
-import { saveCatalogue } from './actions/doctorActions'
+import BookingComponent from './components/DashboardComponent/BookingComponent'
+import PlockrComponent from './components/DashboardComponent/PlockrComponent'
+import CovidComponent from './components/DashboardComponent/CovidComponent'
+import { saveSpecialities } from './actions/doctorActions'
 import { fetchAllUsers } from './actions/userActions'
-
+import { fetchBookings } from './actions/userActions'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class App extends Component {
   async componentDidMount(){
-    await this.props.saveCatalogue();
+    // await this.props.saveCatalogue();
+    await this.props.saveSpecialities()
     await this.props.fetchAllUsers();
-    // console.log('1')
+    await this.props.fetchBookings();
+    // console.log('Asnhul')
+    // toast("Wow so easy !")
+    // console.log('Anshul')
   }
   
   render() {
@@ -29,13 +33,12 @@ class App extends Component {
         <div className='container-fluid'>
           <Switch>
             <Route exact path='/' component={DashboardComponent} />
-            <Route exact path='/login' component={LoginComponent} />
             <Route exact path='/downloads' component={DownloadComponent} />
             <Route exact path='/doctors' component={DoctorComponent} />
             <Route exact path='/hospitals' component={HospitalComponent} />
-            <Route exact path='/editdoctordetails' component={EditDoctorComponent} />
-            <Route exact path='/docform' component={DocFormComponent} />
-            <Route exact path='/masterCatalogue' component={MasterCatalogueComponent} />
+            <Route exact path='/bookings' component={BookingComponent} />
+            <Route exact path='/covid' component={CovidComponent} />
+            <Route exact path='/plockr-tracker' component={PlockrComponent} />
           </Switch>
         </div>
       </Router>
@@ -48,5 +51,5 @@ class App extends Component {
   }
 }
 
-export default connect(null, {saveCatalogue, fetchAllUsers})(App)
+export default connect(null, {saveSpecialities, fetchAllUsers, fetchBookings})(App)
 

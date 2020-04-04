@@ -25,5 +25,6 @@ export const createPost = postData => dispatch => {
         type: NEW_POST,
         payload: post
       })
+    
     );
 };

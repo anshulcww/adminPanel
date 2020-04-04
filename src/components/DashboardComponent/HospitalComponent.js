@@ -22,47 +22,89 @@ class HospitalComponent extends Component {
         const data = {
             columns: [
                 {
+                    label: 'S. no',
+                    field: 'id',
+                    sort: 'disabled',
+                    width: 100
+                },
+                {
                     label: 'Name',
                     field: 'name',
-                    sort: 'asc',
+                    sort: 'disabled',
                     width: 100
                 },
                 {
                     label: 'Email',
                     field: 'email',
-                    sort: 'asc',
+                    sort: 'disabled',
                     width: 100
                 },
                 {
                     label: 'Mobile Number',
                     field: 'mobileNumber',
-                    sort: 'asc',
+                    sort: 'disabled',
                     width: 100
                 },
                 {
                     label: 'Address',
                     field: 'address',
-                    sort: 'asc',
+                    sort: 'disabled',
                     width: 100
                 },
                 {
                     label: 'Registered date',
                     field: 'timestamp',
-                    sort: 'asc',
+                    sort: 'disabled',
                     width: 100
                 },
                 {
                     label: 'Registeration Number',
                     field: 'registrationNumber',
-                    sort: 'asc',
+                    sort: 'disabled',
                     width: 100
                 },
                 {
-                    label: 'Catalogue',
-                    field: 'action',
-                    sort: 'asc',
+                    label: 'List Of Doctors',
+                    field: 'doctors',
+                    sort: 'disabled',
                     width: 100
-                }
+                },
+                {
+                    label: 'Account Holder Name',
+                    field: 'accountHolderName',
+                    sort: 'disabled',
+                    width: 150
+                },
+                {
+                    label: 'Bank Name',
+                    field: 'bankName',
+                    sort: 'disabled',
+                    width: 150
+                },
+                {
+                    label: 'Ifsc Code',
+                    field: 'ifscCode',
+                    sort: 'disabled',
+                    width: 150
+                },
+                {
+                    label: 'Account Number',
+                    field: 'accountNumber',
+                    sort: 'disabled',
+                    width: 150
+                },
+                {
+                    label: 'Pan Number',
+                    field: 'panNumber',
+                    sort: 'disabled',
+                    width: 150
+                },
+                // {
+                //     label: 'Catalogue',
+                //     field: 'action',
+                //     sort: 'disabled',
+                //     width: 100
+                // }
             ],
             rows: this.props.hosDetails
         }
@@ -74,7 +116,7 @@ class HospitalComponent extends Component {
                     bordered
                     small
                     data={data}
-                    // paging={true}
+                    paging={true}
                 />
             </div>
         );

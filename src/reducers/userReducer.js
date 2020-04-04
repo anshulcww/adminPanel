@@ -1,9 +1,11 @@
-import { FETCH_USERS, FETCH_DOCTORS, FETCH_HOSPITALS } from '../actions/types';
+import { FETCH_USERS, FETCH_DOCTORS, FETCH_HOSPITALS, FETCH_BOOKINGS, COVID } from '../actions/types';
 
 const initialState = {
   user: [],
   doctor: [],
-  hospital: []
+  hospital: [],
+  bookings: [],
+  covid:[]
 };
 
 export default function (state = initialState, action) {
@@ -23,6 +25,16 @@ export default function (state = initialState, action) {
         ...state,
         hospital: action.payload
       }
+    case FETCH_BOOKINGS: 
+      return {
+        ...state,
+        bookings: action.payload
+      }  
+    case COVID: 
+      return {
+        ...state,
+        covid: action.payload
+      }  
     default:
       return state;
   }

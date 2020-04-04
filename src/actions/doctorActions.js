@@ -3,27 +3,19 @@ import axios from 'axios';
 import history from '../history';
 
 
-export const saveCatalogue = () => async dispatch => {
-    return await axios.get('https://plunes.co/v4/catalogue')
+export const saveSpecialities = () => async dispatch => {
+    return await axios.get('http://www.plunes.co/v4/catalogue_manager/specialities')
         .then(res => {
-            if (res.status === 201) {
-                let catalogue = res.data;
+            if (res.status === 200) {
+                //let catalogue = res.data;
                 let specialities = [];
-                catalogue.forEach(element => {
-                    let speciality = {
-                        specialityId: element._id,
-                        specialityName: element.speciality
-                    }
-                    specialities.push(speciality)
-                })
-                dispatch({
-                    type: SAVE_CATALOGUE,
-                    payload: catalogue
-                })
-                dispatch({
-                    type: SAVE_SPECIALITIES,
-                    payload: specialities
-                })
+                console.log(res.data.data , 'specialities')
+                localStorage.setItem('specialities', JSON.stringify(res.data.data));
+
+                // dispatch({
+                //     type: SAVE_SPECIALITIES,
+                //     payload: specialities
+                // })
             }
         })
 };

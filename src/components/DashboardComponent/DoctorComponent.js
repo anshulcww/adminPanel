@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { MDBDataTable } from 'mdbreact';
 import { connect } from 'react-redux';
-import {fetchDocDetails} from '../../actions/doctorActions'
+// import {fetchDocDetails} from ''
 
 class DoctorComponent extends Component {
     constructor(props) {
@@ -11,55 +11,67 @@ class DoctorComponent extends Component {
 
    async clickHandler(e){
         e.preventDefault();
-        await this.props.fetchDocDetails(e.target.id)
+        // await this.props.fetchDocDetails(e.target.id)
     }
 
     render() {
-        this.props.docDetails.forEach((d)=> {
-            d['action'] = <button onClick={this.clickHandler} id= {d.mobileNumber}>View</button>  
-        })
+        // this.props.docDetails.forEach((d)=> {
+        //     d['action'] = <button onClick={this.clickHandler} id= {d.mobileNumber}>View</button>  
+        // })
         const data = {
             columns: [
                 {
+                    label: 'S. no',
+                    field: 'id',
+                    sort: 'disabled',
+                    width: 100
+                },
+                {
                     label: 'Name',
                     field: 'name',
-                    sort: 'asc',
+                    sort: 'disabled',
                     width: 100
+                },
+                {
+                    label : 'Specialities',
+                    field:'specialities',
+                    sort: 'disabled',
+                    width : 150
                 },
                 {
                     label: 'Email',
                     field: 'email',
-                    sort: 'asc',
+                    sort: 'disabled',
                     width: 100
                 },
                 {
                     label: 'Mobile Number',
                     field: 'mobileNumber',
-                    sort: 'asc',
+                    sort: 'disabled',
                     width: 100
                 },
                 {
                     label: 'Address',
                     field: 'address',
-                    sort: 'asc',
+                    sort: 'disabled',
                     width: 100
                 },
                 {
                     label: 'Registered date',
                     field: 'timestamp',
-                    sort: 'asc',
+                    sort: 'disabled',
                     width: 100
                 },
                 {
                     label: 'Registeration Number',
                     field: 'registrationNumber',
-                    sort: 'asc',
+                    sort: 'disabled',
                     width: 100
                 },
                 {
                     label: 'Catalogue',
                     field: 'action',
-                    sort: 'asc',
+                    sort: 'disabled',
                     width: 100
                 }
             ],
@@ -73,7 +85,7 @@ class DoctorComponent extends Component {
                     bordered
                     small
                     data={data}
-                    // paging={true}
+                    paging={true}
                 />
             </div>
         );
@@ -84,6 +96,6 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, {fetchDocDetails})(DoctorComponent);
+export default connect(mapStateToProps, {})(DoctorComponent);
 
 
